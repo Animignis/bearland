@@ -1,0 +1,43 @@
+Town
+ Checkable person
+ Checkable obj
+ Tool tool
+ string name
+ string adjective
+ bool markedSafe
+ Talk()
+ Check()
+
+
+Player [SINGLETON PATTERN]
+ List<Tool> tools
+ int passes
+
+
+Checkable
+ string name
+ bool hasChecked // might not be necessary, could just set the respected Checkable field to null for the given town
+ Check()
+   <People>
+    NOTHING (null field?)
+    DISGUISE
+    NORTH/SOUTH
+    EAST/WEST
+    SAFE ZONE
+    PASSES
+    THIEF
+    STOOL PIGEON
+    BLACK MARKET
+
+Tool
+ Activate()
+  NOTHING (null field?)
+  DISGUISE
+  BEAR TRAP
+  BEAROMETER
+  DECOY
+  SUPER BEAR TRAP
+  SUPER BEAROMETER
+  SUPER DECOY
+
+Bear --> CHECKABLE

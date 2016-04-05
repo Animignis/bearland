@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{7ED68CB9-904E-5983-067B-0A16881BD1C8}") = "Bearland", "Assembly-CSharp.csproj", "{491514E9-10B3-AB29-452B-12D052BBE8B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{491514E9-10B3-AB29-452B-12D052BBE8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491514E9-10B3-AB29-452B-12D052BBE8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491514E9-10B3-AB29-452B-12D052BBE8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491514E9-10B3-AB29-452B-12D052BBE8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
