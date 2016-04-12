@@ -12,6 +12,9 @@ namespace Assets.Scripts
         private Checkable obj;
         private Tool tool;
         private bool markedSafe = false;
+        private bool markedThief = false;
+        private bool markedBear = false;
+        private bool isNuke = false;
 
         public Town(string adjective, string name, Checkable person, Checkable obj, Tool tool)
         {

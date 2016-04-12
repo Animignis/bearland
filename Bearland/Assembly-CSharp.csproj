@@ -47,9 +47,15 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bear.cs" />
      <Compile Include="Assets\Scripts\Checkable.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Test.cs" />
      <Compile Include="Assets\Scripts\Tools\Tool.cs" />
      <Compile Include="Assets\Scripts\Town.cs" />
+     <None Include="Assets\Data\objects.txt" />
+     <None Include="Assets\Data\adjectives.txt" />
+     <None Include="Assets\Data\towns.txt" />
+     <None Include="Assets\Data\persons.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

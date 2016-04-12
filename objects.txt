@@ -1,0 +1,99 @@
+AIR GUITAR	try using
+ANVIL	check under
+ARMORED TANK	open/check inside
+BABY CARRIAGE	check inside
+BAGPIPE	check inside
+BIG RED BUTTON	push
+BOWLING BALL	check under
+BOX OF TAKEOUT	open/check inside
+BOXCAR	open/check inside
+BREATH MINT	check
+BRICK WALL	check
+BRIDGE	check under
+BRIEFCASE	open/check inside
+CASSEROLE	break apart
+CACTUS	very carefully check
+CHASM	jump into
+CHUMMYJIGGER	check
+COLD ONE	open
+CRATE	open/check inside
+CREEPY VAN	open/check inside
+DISHWASHER	open/check inside
+DIPSTICK	check
+DOUGHNUT	break apart
+DUMPSTER	jump into
+EGGPLANT	break apart
+ENIGMA	stare deep into
+ESCUTCHEON	check
+FACTORY	search the FACTORY for clues
+FEATURE CREEP	check out
+FEDORA	check under
+FIRE	stick your hand into
+FIVE CAR PILEUP	check under
+FLASK	check inside
+FOUNTAIN	check inside
+GALL BLADDER	check inside
+GARDEN GNOME	break apart
+GAZEBO	check inside
+GOLF BAG	check inside
+GUMBALL MACHINE	try using
+HAIR DRYER	try using
+HAPPY MEAL	open/check inside
+HARPSICORD	open/check inside
+HAYSTACK	stick your hand into
+HELICOPTER	open/check inside
+HORSE WITH NO NAME	stick your hand into
+HOT TUB	check inside
+HULA HOOP	check
+ICED TEA	check inside
+IGLOO	check inside
+JOYSTICK	check under
+LANDMINE	check
+LAUNDRY PILE	check under
+LIMOUSINE	open/check inside
+LOG	check under
+LOINCLOTH	check under
+MANHOLE	open/check inside
+METEORITE	check
+METAPHOR	break apart
+MICROSCOPE	try using
+MINI-FRIDGE	open/check inside
+MIX TAPE	check out
+MOIST CAVE	check in this here
+MOUNTAIN	check
+NAIL GUN	try using
+OMNIBUS	check
+OVEN	open/check inside
+PARKING METER	open/check inside
+PEZ DISPENSER	try using
+PIANO	open/check inside
+PILL BOTTLE	open/check inside
+PONY KEG	try using
+QUILT	check under
+ROCK	check under
+SHED	open/check inside
+SHOELACE	check
+SLUSHIE	open/check inside
+SOFA	check between the SOFA cushions
+SPORK	check
+SPRING RIDER	check out
+STAPLER	try using
+STATUE	check
+STRIP MALL	check inside
+SUPERCOMPUTER	try using
+STUMP	check
+SWIVEL CHAIR	check out
+TESSARACT	stare deep into
+TIME MACHINE	try using
+TOASTER	try using
+TOILET	stick your hand into
+TOOTHBRUSH	try using
+TRASH CAN	open/check inside
+TREEHOUSE	check inside
+TUBA	stick your hand into
+TUMBLEWEED	
+UNICYCLE	check out
+VCR	push Eject on
+WELL	jump into
+WORMHOLE	stare deep into
+YO-YO	break apart

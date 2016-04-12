@@ -1,0 +1,100 @@
+ALCHEMIST	male
+ANGEL	either
+ASSASSIN	either
+ASTRONAUT	either
+BAG LADY	female
+BARKEEP	male
+B-LIST ACTOR	male
+BREAKDANCER	either
+BUS DRIVER	either
+BUTLER	male
+CANCERMANCER	male
+CANNIBAL	either
+CHEF	either
+CON ARTIST	either
+COP	either
+COURT JESTER	either
+COWBOY	male
+CULTIST	either
+CYBORG	either
+DENNIS	male
+DETECTIVE	either
+DJ	either
+DUCHESS	female
+ELVIS IMPERSONATOR	male
+FISHMONGER	male
+FRYCOOK	either
+FURBY	asexual
+GAS JOCKEY	male
+GENIE	asexual
+GOLD DIGGER	female
+GREASER	male
+GRAVE DIGGER	asexual
+GYPSY	female
+HAND MODEL	female
+HIGHLANDER	male
+HIPPIE	either
+HIPSTER	either
+HOMEWRECKER	either
+IMAGINARY FRIEND	asexual
+INFANT	either
+INMATE	either
+INVISIBLE MAN	male
+JANITOR	male
+KNIGHT	either
+LAWYER	either
+LEPRECHAUN	male
+LICHENTHROPE	either
+LITTLE GIRL	female
+LOITERER	either
+LOLCAT	asexual
+LUMBERJACK	male
+LUNCH LADY	female
+MAFIA DON	male
+MAGICIAN	either
+MALE STRIPPER	male
+MANNEQUIN	asexual
+MARTIAN	asexual
+MERMAID	female
+MILKMAN	male
+MUNCHKIN	either
+NEWS ANCHOR	either
+NINJA	either
+NUN	female
+NURSE	female
+NYMPH	female
+OGRE	asexual
+ORPHAN	either
+OUTSPOKEN MIME	asexual
+PAPERBOY	male
+PEASANT	either
+PEEPING TOM	male
+PINKERTON	male
+PIRATE	male
+POLTERGEIST	asexual
+PRINCESS	female
+PROSPECTOR	male
+PSYCHIC	either
+RANGER	either
+ROBO-HOBO	asexual
+SECRET AGENT	either
+SELLOUT	either
+SHAPESHIFTER	asexual
+SNIPER	either
+SNOWMAN	asexual
+SPERGLORD	male
+STURGEON SURGEON	either
+SUPERHERO	either
+TATTLETALE	either
+TERMINATOR	either
+TODDLER	either
+UNDERTAKER	either
+VALKYRIE	female
+VAMPIRE HUNTER	either
+VEGAN	either
+VICE PRESIDENT	either
+VIKING	male
+WHITESMITH	either
+WITCH	female
+WIZARD	male
+YODELER	either
