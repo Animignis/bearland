@@ -7,9 +7,10 @@ namespace Assets.Scripts
 {
     public class Bear : Checkable
     {
-        public Bear()
+        public Bear(string name, string identifier)
         {
-            this.name = "BEAR";
+            this.name = name;
+            this.identifier = identifier;
         }
 
         override public void Check()

@@ -16,11 +16,13 @@ namespace Assets.Scripts
         private const string PERSONS = "persons.txt";
         private const string TOWNS = "towns.txt";
         private const string ADJECTIVES = "adjectives.txt";
+        private const string HINTS_TOOLS = "hints_tools.txt";
 
         private List<string> towns;
         private List<string> adjectives;
         private List<string> persons;
         private List<string> objects;
+        private List<string> hintsTools;
 
         private Dictionary<string, string> genderMap;
 
@@ -87,19 +89,33 @@ namespace Assets.Scripts
                 objects.Add(reader.ReadLine());
             }
             reader.Close();
+
+            reader = new StreamReader(DATA_PATH + HINTS_TOOLS);
+            while (!reader.EndOfStream)
+            {
+                hintsTools.Add(reader.ReadLine());
+            }
+            reader.Close();
         }
 
         // create a new game with "n" rows, "m" columns, and "b" bears
+        // n*m cannot be any greater than 30
         public void NewGame(int n, int m, int b)
         {
-            List<string> _towns = new List<string>();
-            List<string> _adjs = new List<string>();
-            List<string> _persons = new List<string>();
-            List<string> _objs = new List<string>();
-            for (int t = 0; t < towns.Count; t++) { _towns.Add(towns[t]); }
-            for (int t = 0; t < adjectives.Count; t++) { _adjs.Add(adjectives[t]); }
-            for (int t = 0; t < persons.Count; t++) { _persons.Add(persons[t]); }
-            for (int t = 0; t < objects.Count; t++) { _objs.Add(objects[t]); }
+            int bearType = 1; // might refactor to enum if needed
+            if (UnityEngine.Random.value <= 0.5)
+            {
+                bearType = 0;
+            }
+
+            towns = Shuffle(towns);
+            adjectives = Shuffle(adjectives);
+            persons = Shuffle(persons);
+            objects = Shuffle(objects);
+
+            List<string> _hintsTools = new List<string>();
+            for (int i = 0; i < n * m; i++) { _hintsTools.Add(hintsTools[i]); }
+            _hintsTools = Shuffle(_hintsTools);
 
             grid = new Town[n, m];
             int i = 0;
@@ -107,40 +123,55 @@ namespace Assets.Scripts
             {
                 for (int c = 0; c < m; c++)
                 {
-                    int index = UnityEngine.Random.Range(0, _towns.Count);
-                    string townName = _towns[index];
-                    _towns.RemoveAt(index);
+                    string townName = towns[i];
+                    string adj = adjectives[i];
+                    string[] personData = (persons[i]).Split('\t');
+                    string identifier = genderMap[personData[1]];
+                    string[] objectData = (objects[i]).Split('\t');
+                    string[] hint_tool = (_hintsTools[i]).Split('\t');
+                    string hintType = hint_tool[0];
+                    string toolType = hint_tool[1];
 
-                    index = UnityEngine.Random.Range(0, _adjs.Count);
-                    string adj = _adjs[index];
-                    _adjs.RemoveAt(index);
-
-                    index = UnityEngine.Random.Range(0, _persons.Count);
-                    string[] personData = (_persons[index]).Split('\t');
-                    _persons.RemoveAt(index);
-
-                    string gender = genderMap[personData[1]];
-                    if (gender.Equals("they"))
+                    // set person's identifier
+                    if (identifier.Equals("they"))
                     {
                         if (UnityEngine.Random.value <= 0.5)
                         {
-                            gender = "he";
+                            identifier = "he";
                         }
                         else
                         {
-                            gender = "she";
+                            identifier = "she";
                         }
                     }
 
-                    index = UnityEngine.Random.Range(0, _objs.Count);
-                    string[] objectData = (_objs[index]).Split('\t');
-                    _objs.RemoveAt(index);
-
-                    Checkable person = new Checkable(personData[0], gender);
+                    Checkable person = new Checkable(personData[0], identifier);
                     Checkable obj = new Checkable(objectData[0], objectData[1]);
-                    Tool tool = null;
+                    
+                    if (bearType == 1 && hintType.Equals("disguise"))
+                    {
+                        // make the person a bear
+                        person = new Bear(personData[0], identifier);
+                        bearType = -1;
+                    }
+                    else if (bearType == 0 && toolType.Equals("disguise"))
+                    {
+                        // make the object a bear
+                        obj = new Bear(objectData[0], objectData[1]);
+                        bearType = -1;
+                    }
 
-                    Debug.Log(adj + " " + townName + ": " + personData[0] + " (" + gender +"), " + objectData[1] + " " + objectData[0]);
+                    Tool tool = null;
+                    switch(toolType) {
+                        // TODO
+                    }
+
+                    switch (hintType)
+                    {
+                        // TODO
+                    }
+
+                    Debug.Log(adj + " " + townName + ": " + personData[0] + " (" + identifier + "), " + objectData[1] + " " + objectData[0]);
 
                     grid[r,c] = new Town(adj, townName, person, obj, tool);
                     i++;
@@ -148,5 +179,21 @@ namespace Assets.Scripts
             }
         }
 
+
+        private List<T> Shuffle<T>(List<T> list)
+        {
+            System.Random rng = new System.Random();
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+
+            return list;
+        }
     }
 }

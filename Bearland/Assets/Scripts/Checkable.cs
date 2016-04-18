@@ -15,11 +15,6 @@ namespace Assets.Scripts
         {
         }
 
-        public Checkable(string name)
-        {
-            this.name = name;
-        }
-
         public Checkable(string name, string identifier)
         {
             this.name = name;
