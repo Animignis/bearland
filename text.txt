@@ -1,0 +1,313 @@
+    class Text
+    {
+        public static Color textColor           // Color of text. Based on current pallette
+        {
+           set
+           {
+                textColor = value;
+                // Rewrite this such that the console starts using this color after a set
+           }
+        }
+ 
+        public static bool doWhisper = false;   // Toggles whipser mode. (Dimmer, quieter text)
+        public static bool doType = true;       // Toggles typewriter animation
+        public static double textX = 0;         // Current horizontal position of typewritter
+        public static double textY = 0;         // Current vertical position of typewritter
+        public static int consoleWidth = 40;    // Number of letters we can fit horizontally
+        public static int consoleHeight = 30;   // Number of letters we can fit vertically
+ 
+        public static double CenterX(string input)
+        {
+            return (consoleWidth - (input.Length - 1)) / 2;
+        }
+ 
+        public static void Center(Object input)
+        {        
+            string text = input.ToString();
+ 
+            if (text.Length > consoleWidth)
+            {
+                MultiLineSplit(text, "Center");
+            }
+            else
+            {
+                Print(CenterX(text), textY, text);
+            }
+        }
+        public static void Center(Object input, double y)
+        {
+            textY = y;
+            Center(input);
+        }
+ 
+        public static void TypeCenter(Object input)
+        {
+            textY += 2;
+            string text = input.ToString();
+ 
+            if (text.Length > consoleWidth)
+            {
+                MultiLineSplit(text, "TypeCenter");
+            }
+            else
+            {
+                Type(CenterX(text), textY, text);
+            }
+        }
+        public static void TypeCenter(Object input, double y)
+        {
+            textY = y;
+            TypeCenter(input);
+        }
+ 
+        public static void WhisperCenter(Object input)
+        {
+            doWhisper = true;
+            //textColor = colorMedium;  // Uncomment this when colorMedium exists;
+ 
+            string text = input.ToString();
+            if (text.Length > consoleWidth)
+            {
+                MultiLineSplit(text, "WhisperCenter");
+            }
+            else
+            {
+                TypeCenter(input);
+            }
+ 
+            doWhisper = false;
+            //typeColor = colorHigh;    // Uncomment this when colorHigh exists;
+        }
+        public static void WhisperCenter(Object input, double y)
+        {
+            textY = y;
+            WhisperCenter(input);
+        }
+ 
+        public static void Type(Object input)
+        {
+            Type(textX, textY, input);
+        }
+        public static void Type(double x, double y, Object input)
+        {
+            string text = input.ToString();
+ 
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
+                switch (c)
+                {
+                    case '@':   // Pause character. Does not print, just waits for a beat
+                        TypeWait(12);
+                        x--;
+                        break;
+ 
+                    case ' ':   // Space character. Does not print, moves to next immediately
+                        Print(x, y, c); // FOR DEBUG ONLY
+                        break;
+ 
+                   
+                    case '(':   // Parenthesis character. Prints, moves to next immediately
+                    case ')':
+                    case '{':   // Bracket character. Prints, moves to next immediately
+                    case '}':
+                    case '[':   // Square Bracket character. Prints, moves to next immediately
+                    case ']':
+                    case '\"':  // Quotation mark character. Prints, moves to next immediately
+                        Print(x, y, c);
+                        break;
+ 
+                    case ',':   // Comma character. Slight extra pause and somewhat lower pitch
+                        Print(x, y, c);
+                        TypeWait(16, -755);
+                        break;
+ 
+                    case '?':    // Question character. Extra pause and higher pitch
+                        Print(x, y, c);
+ 
+                        if (i + 1 < text.Length && (text[i + 1] == '\"' || text[i + 1] == ')' || text[i + 1] == '}' || text[i + 1] == ']'))       // Immeditately print any following quotation marks
+                        {
+                            c = text[++i];
+                            x++;
+                            Wait(16);
+                            Print(x++, y, c);
+                        }
+ 
+                        TypeWait(12, 875);
+                        break;
+ 
+                    case '!':    // Exclamation character. Extra pause and two-tone beep.      
+                        Print(x, y, c);
+ 
+                        if (i + 1 < text.Length && (text[i + 1] == '\"' || text[i + 1] == ')' || text[i + 1] == '}' || text[i + 1] == ']'))       // Immeditately print any following quotation marks or end brackets
+                        {
+                            c = text[++i];
+                            x++;
+                            Wait(16);
+                            Print(x++, y, c);
+                        }
+ 
+                        Beep("typeBeep.wav", 675, 192);
+                        TypeWait(20, -1555);
+                        break;
+ 
+                    case '.':   // Period character. Extra pause and lower pitch
+                    case ':':   // Colon character. Extra pause and lower pitch
+                        Print(x, y, c);
+ 
+                        if (i + 1 < text.Length && (text[i + 1] == '\"' || text[i + 1] == ')' || text[i + 1] == '}' || text[i + 1] == ']'))       // Immeditately print any following quotation marks or end brackets
+                        {
+                            c = text[++i];
+                            x++;
+                            Wait(16);
+                            Print(x++, y, c);
+                        }
+ 
+                        TypeWait(i + 1 < text.Length && (text[i + 1] == '.') ? 16 : 32, -1555);       // Elipses (...) only pause noticably on the last period.
+                        break;
+ 
+                    default:    // Normal characters.
+                        Print(x, y, c);
+                        TypeWait(4);
+                        break;
+                }
+                x++;
+            }
+ 
+            switch (text[text.Length - 1])   // 'Hit Enter' twice if this was the end of a sentence.
+            {
+                case '.':
+                case '!':
+                case '?':
+                case ':':
+                    textY += 2;
+                    TypeWait(44);
+                    break;
+                case '\'':
+                    switch (text[text.Length - 2])    // Check second-to-last character if the last character is a quotation mark
+                    {
+                        case '.':
+                        case '!':
+                        case '?':
+                        case ':':
+                            textY += 2;
+                            TypeWait(44);
+                            break;
+                    }
+                    break;
+            }
+        }
+ 
+        public static void TypeWait(int speed)
+        {
+            TypeWait(speed, 0);
+        }
+        public static void TypeWait(int speed, int pitch)
+        {
+            if (doType)
+            {
+                double fastForward = (/*boolean determining if fast forward is active*/ false) ? 0.5 : 1;
+ 
+                Beep("typeBeep.wav", pitch, 72);
+                Wait(12 * speed * fastForward);
+            }
+        }
+ 
+        private static void MultiLineSplit(string input, string typeMode)
+        {
+            int totalLength = input.Length;
+            int lineLength = totalLength;
+            int lineCount = 2;
+ 
+            while ((totalLength / lineCount) > consoleWidth)    // Determine how many lines are needed to display this text
+            {
+                lineCount++;
+                double fraction = totalLength / lineCount;
+                lineLength = Convert.ToInt32(Math.Floor(fraction));
+            }
+ 
+            string[] inputArray = new string[lineCount + 1];
+            string splice = input;
+            int i = 0;
+ 
+            while (splice != "")    // Split the oversized input into an array of managable lines
+            {
+                int j = lineLength - 1;
+                if (splice.Length > j)
+                {
+                    char c = 'X';
+ 
+                    if (splice.Substring(0, j + 1).Contains(" ")) // Find a whitespace to perform the split
+                    {
+                        while (c != ' ')   
+                        {
+                            c = splice[j];
+                            j--;
+                        }
+ 
+                        inputArray[i] = splice.Substring(0, j + 1);
+                        splice = splice.Substring(j + 2);
+                    }
+                    else   // Just stuff a hyphen in between lines
+                    {
+                        inputArray[i] = splice.Substring(0, j) + "-";
+                        splice = splice.Substring(j + 1);
+                    }
+                }
+                else
+                {
+                    inputArray[i] = splice;
+                    splice = "";
+                }
+                i++;
+            }
+ 
+            foreach (string s in inputArray)    // Perform the intended type animation for each line of split text
+            {  
+                if (s != null)
+                {
+                    switch (typeMode)
+                    {
+                        case "Center":
+                            Center(s);
+                            break;
+                        case "TypeCenter":
+                            TypeCenter(s);
+                            break;
+                        case "WhisperCenter":
+                            WhisperCenter(s);
+                            break;
+                    }
+                    textY--;    // Display split text in adjacent rows with no extra spacing
+                }
+            }
+        }
+ 
+        // The following functions are mostly dummied out and will need to be rewritten to work in the native environment:
+ 
+        private static void Print(double x, double y, Object input)
+        {
+            // Whatever code is necessary to write a string onto the screen.
+            // x and y are used to determine which part of the screen to put the letter on
+            // increasing x or y by 1 should move a distance equivalent to a whole letter
+            // Accomodate decimal values of .0 or .5 t o allow for centering
+ 
+            // TEMPORARY LINES ONLY:
+            Console.CursorLeft = Convert.ToInt32(x);
+            Console.CursorTop = Convert.ToInt32(y);
+            Console.Write(input);
+        }
+ 
+        private static void Beep(string beepName, int pitch, int volume)
+        {
+            // Play the specified sound effect at the specified pitch and volume
+            // Volume 0 = silent, 128 = loudest
+            // Pitch 0 = default
+        }
+ 
+        private static int Wait(double input)
+        {
+            int delayTime = Convert.ToInt32(input);
+            Thread.Sleep(delayTime);
+            return delayTime;
+        }
